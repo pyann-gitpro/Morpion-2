@@ -1,5 +1,5 @@
 
-# Jeu de Morpion
+# Jeu de Morpion (version 0.2 with test)
 
 Ce projet est un simple jeu de Morpion en Python avec une interface d'affichage graphique de la grille à l'aide de `matplotlib`. Le jeu se joue à deux joueurs et s'arrête lorsqu'un joueur gagne ou lorsque la partie se termine par un match nul.
 
