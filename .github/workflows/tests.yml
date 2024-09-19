@@ -27,7 +27,7 @@ jobs:
     # tests
     - name: Run unit tests (un fichier)
       run: |
-        pytest tests/test_morpion.py
+        pytest public/tests/test_morpion.py
     # - name: Run unit tests (un autre fichier)
     #   run: |
     #     pytest tests/test_1.py
