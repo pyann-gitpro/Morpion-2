@@ -16,6 +16,15 @@ import pytest
 from module.mouvement import placer_marque  # Importation correcte
 from module.victoire_nul import victoire, match_nul
 from game import jeu
+from unittest.mock import patch
+
+# Importe ta fonction jeu
+from public.game import jeu
+
+def test_partie_victoire_x():
+    mouvements = [(0, 0), (1, 0), (0, 1), (1, 1), (0, 2)]  # X gagne
+    with patch('builtins.input', side_effect=['n']):  # Simuler l'entrée pour "non"
+        jeu(mouvements=mouvements)
 
 def test_victoire():
     # Configuration d'une grille gagnante pour 'X'
@@ -32,10 +41,3 @@ def test_placer_marque():
     grille_test = [['', '', ''], ['', '', ''], ['', '', '']]
     placer_marque(grille_test, 1, 1, 'O')
     assert grille_test[1][1] == 'O'
-
-def test_partie_victoire_x():
-    # Simuler une partie où 'X' gagne
-    mouvements = [(0, 0), (1, 0), (0, 1), (1, 1), (0, 2)]  # X gagne
-    jeu(mouvements=mouvements)  # Tester avec des mouvements prédéfinis
-    grille_test = [['X', 'X', 'X'], ['O', 'O', ''], ['', '', '']]
-    assert victoire(grille_test, 'X') == True
