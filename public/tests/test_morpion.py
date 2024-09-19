@@ -19,7 +19,7 @@ from game import jeu
 from unittest.mock import patch
 
 # Importe ta fonction jeu
-from public.game import jeu
+from game import jeu
 
 def test_partie_victoire_x():
     mouvements = [(0, 0), (1, 0), (0, 1), (1, 1), (0, 2)]  # X gagne
