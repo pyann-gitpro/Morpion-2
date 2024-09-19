@@ -44,14 +44,19 @@ Voici l'arborescence du projet :
 
 ```bash
 .
+├── .github/
+│        ├──workflows/
+│            ├── tests.yml/
 ├── .venv/
 ├── public/
-│   └── src/
-├── module/
-│   ├── __pycache__/
-│   ├── grid.py
-│   ├── reponse.py
-│   └── victoire_nul.py
+├       ├──module/
+│       │    ├── __pycache__/
+│       │    ├── grid.py
+│       │    ├── reponse.py
+│       │    └── victoire_nul.py
+│       ├──tests/
+│            ├── __pycache__/
+│            └── test_morpion.py
 ├── game.py
 ├── .gitignore
 ├── readme.md
