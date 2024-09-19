@@ -65,6 +65,52 @@ Voici l'arborescence du projet :
 - Le premier joueur à aligner trois marqueurs (horizontalement, verticalement ou en diagonale) gagne la partie.
 - Si toutes les cases sont remplies sans qu'aucun joueur n'aligne trois marqueurs, la partie se termine par un match nul.
 
+## Tests Unitaires / Github Actions et Workflows
+
+- **Créer un fichier de workflow** : Dans votre dépôt GitHub, créez un fichier `.github/workflows/tests.yml` (ou un nom similaire). Ce fichier YAML définit les étapes de votre workflow d'automatisation.
+- **Définir les déclencheurs** : Indiquez quand vous souhaitez que vos tests soient exécutés (par exemple, à chaque push sur la branche main, lors de la création d'une pull request, etc.).
+- **Configurer l'environnement** : Spécifiez l'environnement d'exécution de vos tests (système d'exploitation, version de Python, dépendances, etc.).
+- **Exécuter les tests** : Utilisez les actions appropriées pour installer vos dépendances, puis lancez vos tests avec la commande de votre framework de test (pytest, unittest, etc.).
+- **Afficher les résultats** : Utilisez les actions pour afficher les résultats des tests directement sur GitHub, par exemple en les publiant dans les commentaires de la pull request.
+
+***Voici un exemple simple de workflow pour pytest :***
+
+```yaml
+name: Python application CI/CD
+on:
+  push:
+    branches: [ main, dev ]  # Branch to survey
+  pull_request:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11"]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements_train.txt
+        # Add any specific installation commands for libcpab
+        pip install -e libcpab
+
+
+    # tests
+    - name: Run unit tests (un fichier)
+      run: |
+        pytest tests/test_0.py
+    - name: Run unit tests (un autre fichier)
+      run: |
+        pytest tests/test_1.py
+```
+
 ## Créateurs
 
 - [Guillaume Thomas](mailto:g.thomas83200@gmail.com)
